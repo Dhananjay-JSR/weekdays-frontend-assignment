@@ -1,0 +1,14 @@
+.text_style {
+  padding: 6px;
+}
+
+.tabs_wrapper {
+  width: fit-content;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tabs_holder {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}

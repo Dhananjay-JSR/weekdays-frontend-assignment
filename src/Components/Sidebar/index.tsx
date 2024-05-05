@@ -18,9 +18,7 @@ export default function SideBar() {
       <section className={styleModule.base_sidebar}>
         <div>
           <div className={styleModule.side_spacer}>
-            <div className={styleModule.logo_wrapper}>
-              <BoyRounded fontSize="large" className={styleModule.logo} />
-            </div>
+            <BoyRounded fontSize="large" className={styleModule.logo} />
             <Divider />
 
             <Typography className={styleModule.textStyle}>GET JOBS</Typography>

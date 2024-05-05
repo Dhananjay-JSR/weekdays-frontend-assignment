@@ -10,13 +10,9 @@
   gap: 10px;
 }
 
-.logo_wrapper {
+.logo {
   margin-left: auto;
   margin-right: auto;
-  width: min-content;
-}
-
-.logo {
   border-radius: 999%;
   border: 1px solid black;
   background-color: lightgray;

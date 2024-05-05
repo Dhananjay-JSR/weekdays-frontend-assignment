@@ -1,48 +1,38 @@
-import {
-  BoyRounded,
-  Person,
-  Search,
-  CurrencyRupee,
-  AddAlertTwoTone,
-  Person2,
-  Person3,
-  PersonPin,
-  AddAPhoto,
-  ThumbUp,
-  Share,
-  List,
-} from "@mui/icons-material";
-import {
-  Avatar,
-  Button,
-  Divider,
-  ListItem,
-  Popover,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Typography } from "@mui/material";
 import SideBar from "./Components/Sidebar";
+import MainStyle from "./App.module.css";
+import TabsMod from "./Components/Tabs";
 function App() {
   return (
     <>
-      <main
-        style={{
-          display: "flex",
-          height: "100vh",
-        }}
-      >
+      <main className={MainStyle.main_wrapper}>
         <SideBar />
-        <section>
-          <header>
-            <nav>NavBar</nav>
+        <section
+          style={{
+            width: "100%",
+          }}
+        >
+          <header
+            style={{
+              padding: "10px",
+              boxShadow: "0 2px 4px 0 rgba(0,0,0,0.1)",
+              height: "50px",
+            }}
+          >
+            <nav>
+              <Typography fontWeight={"medium"}>👋 Dhananjay</Typography>
+            </nav>
           </header>
-          <main>Body</main>
+          <main>
+            <TabsMod />
+          </main>
         </section>
       </main>
     </>
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const API_Data = {
   jdList: [
     {

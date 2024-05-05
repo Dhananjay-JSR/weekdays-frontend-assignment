@@ -7,15 +7,50 @@ import {
   ThumbUp,
   Share,
   ListAlt,
+  Slideshow,
 } from "@mui/icons-material";
-import { Divider, Typography, Avatar } from "@mui/material";
+import {
+  Divider,
+  Typography,
+  Avatar,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import { PopOverButton } from "./PopOverButton";
 import styleModule from "./style.module.css";
+import { useState } from "react";
 
 export default function SideBar() {
+  const isScreen = useMediaQuery("(min-width:768px)");
+
+  const [isShow, setIsShow] = useState(false);
+
   return (
     <>
-      <section className={styleModule.base_sidebar}>
+      <section
+        className={styleModule.base_sidebar}
+        style={{
+          transform: isScreen
+            ? "translateX(0)"
+            : isShow
+            ? "translateX(0)"
+            : "translateX(-90%)",
+        }}
+      >
+        <IconButton
+          onClick={() => setIsShow(!isShow)}
+          sx={{
+            position: "absolute",
+            right: "0",
+            transform: "translateX(50%)",
+            backgroundColor: "white",
+
+            display: isScreen ? "none" : "block",
+          }}
+          className={styleModule.toggle_button}
+        >
+          <Slideshow />
+        </IconButton>
         <div>
           <div className={styleModule.side_spacer}>
             <BoyRounded fontSize="large" className={styleModule.logo} />

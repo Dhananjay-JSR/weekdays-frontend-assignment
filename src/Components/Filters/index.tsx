@@ -14,6 +14,7 @@ export default function Filters() {
     <>
       <div
         style={{
+          justifyContent: "center",
           display: "flex",
           padding: "10px",
           gap: "10px",

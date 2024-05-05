@@ -5,12 +5,32 @@ import TabsMod from "./Components/Tabs";
 import Filters from "./Components/Filters";
 import JOB_Cards from "./Components/JobCard";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { useCallback, useEffect, useRef } from "react";
 function App() {
+  const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const handleScroll = useCallback(() => {
+    if (ref.current) {
+      const { scrollTop, scrollHeight, clientHeight } = ref.current;
+      if (scrollTop + clientHeight >= scrollHeight - 1) {
+        alert("End of the page");
+      }
+    }
+  }, []);
+  useEffect(() => {
+    const element = ref.current;
+    if (element) {
+      element.addEventListener("scroll", handleScroll);
+      return () => {
+        element.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [handleScroll]);
   return (
     <>
       <main className={MainStyle.main_wrapper}>
         <SideBar />
         <section
+          ref={ref}
           style={{
             width: "100%",
             height: "100vh",

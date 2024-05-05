@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Alert, Box, CircularProgress, Typography } from "@mui/material";
 import SideBar from "./Components/Sidebar";
 import MainStyle from "./App.module.css";
 import TabsMod from "./Components/Tabs";
@@ -6,15 +6,25 @@ import Filters from "./Components/Filters";
 import JOB_Cards from "./Components/JobCard";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { useCallback, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAPIData } from "./store/DataSlice";
+import { AppDispatch, RootState } from "./store/store";
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { data, currentPage, currentState, error } = useSelector(
+    (state: RootState) => state.apiData
+  );
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
   const handleScroll = useCallback(() => {
     if (ref.current) {
       const { scrollTop, scrollHeight, clientHeight } = ref.current;
       if (scrollTop + clientHeight >= scrollHeight - 1) {
-        alert("End of the page");
+        dispatch(fetchAPIData());
       }
     }
+  }, []);
+  useEffect(() => {
+    dispatch(fetchAPIData());
   }, []);
   useEffect(() => {
     const element = ref.current;
@@ -55,6 +65,8 @@ function App() {
           <main className={MainStyle.body_holder}>
             <TabsMod />
             <Filters />
+            {currentState == "LOADING" && <Typography>Loading...</Typography>}
+            {currentState == "ERROR" && <Alert severity="error">{error}</Alert>}
             <Grid2
               justifyContent="center"
               gap={2}
@@ -64,7 +76,7 @@ function App() {
               container
               spacing={2}
             >
-              {API_Data.jdList.map((items) => {
+              {data?.map((items) => {
                 return (
                   <>
                     <JOB_Cards>
@@ -96,6 +108,11 @@ function App() {
                 );
               })}
             </Grid2>
+            {currentState == "LOADING" && (
+              <Box>
+                <CircularProgress />
+              </Box>
+            )}
 
             {/*  */}
           </main>

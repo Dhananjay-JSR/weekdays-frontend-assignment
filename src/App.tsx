@@ -1,7 +1,17 @@
-import { Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import SideBar from "./Components/Sidebar";
 import MainStyle from "./App.module.css";
 import TabsMod from "./Components/Tabs";
+import SingleSelect from "./Components/Input/SingleSelect";
+import MultiSelect from "./Components/Input/MultiSelect";
 function App() {
   return (
     <>
@@ -25,6 +35,174 @@ function App() {
           </header>
           <main>
             <TabsMod />
+            <div
+              style={{
+                display: "flex",
+                padding: "10px",
+                gap: "10px",
+                flexWrap: "wrap",
+              }}
+            >
+              <MultiSelect
+                multiSelect
+                sx={{
+                  minWidth: "200px",
+                }}
+                checkMark
+                label="Roles"
+                CategoryOption={[
+                  {
+                    name: "ENGINEERING",
+                    children: [
+                      "Frontend",
+                      "Backend",
+                      "Fullstack",
+                      "IOS",
+                      "Flutter",
+                      "React Native",
+                      "Android",
+                      "Tech Lead",
+                      "Dev-Ops",
+                      "Data Engineer",
+                      "Data Science",
+                      "Computer-Vision",
+                      "NLP",
+                    ].map((item) => ({
+                      label: item,
+                      value: item.toLowerCase(),
+                    })),
+                  },
+                  {
+                    name: "DESIGN",
+                    children: [
+                      "Designer",
+                      "Design Manager",
+                      "Graphics Magnager",
+                      "Product Designer",
+                    ].map((item) => ({
+                      label: item,
+                      value: item.toLowerCase(),
+                    })),
+                  },
+                  {
+                    name: "PRODUCT",
+                    children: ["PRODUCT Manager"].map((items) => ({
+                      label: items,
+                      value: items.toLowerCase(),
+                    })),
+                  },
+                  {
+                    name: "OPERATIONS",
+                    children: ["Operation Managers", "Founder's Office"].map(
+                      (items) => ({
+                        label: items,
+                        value: items.toLowerCase(),
+                      })
+                    ),
+                  },
+                ]}
+              />
+              <SingleSelect
+                label="Number of Employees"
+                sx={{
+                  minWidth: "200px",
+                }}
+                options={[
+                  "1-10",
+                  "11-20",
+                  "21-50",
+                  "51-100",
+                  "101-200",
+                  "201-500",
+                  "500+",
+                ].map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+              />
+              <SingleSelect
+                sx={{
+                  minWidth: "200px",
+                }}
+                label="Experience"
+                options={[
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8",
+                  "9",
+                  "10",
+                ].map((item) => ({
+                  value: item,
+                  label: item,
+                }))}
+              />
+              <SingleSelect
+                sx={{
+                  minWidth: "200px",
+                }}
+                label="Remote"
+                options={[
+                  {
+                    label: "Remote",
+                    value: "Remote",
+                  },
+                  {
+                    label: "Hybrid",
+                    value: "Hybrid",
+                  },
+                  {
+                    label: "In-Office",
+                    value: "In-Office",
+                  },
+                ]}
+              />
+              <SingleSelect
+                sx={{
+                  minWidth: "250px",
+                }}
+                label="Minimum Base Pay Salary"
+                options={[
+                  {
+                    label: "0L",
+                    value: "0L",
+                  },
+                  {
+                    label: "10L",
+                    value: "10L",
+                  },
+                  {
+                    label: "20L",
+                    value: "20L",
+                  },
+                  {
+                    label: "30L",
+                    value: "30L",
+                  },
+                  {
+                    label: "40L",
+                    value: "40L",
+                  },
+                  {
+                    label: "50L",
+                    value: "50L",
+                  },
+                  {
+                    label: "60L",
+                    value: "60L",
+                  },
+                  {
+                    label: "70L",
+                    value: "70L",
+                  },
+                ]}
+              />
+              <TextField label="Search Company Name" variant="outlined" />
+            </div>
           </main>
         </section>
       </main>

@@ -21,10 +21,14 @@ export default function TabModule({
               }}
               color="primary"
             >
-              <Typography className={TabStyle.text_style}>{Content}</Typography>
+              <Typography className={TabStyle.text_style} color={"black"}>
+                {Content}
+              </Typography>
             </Badge>
           ) : (
-            <Typography className={TabStyle.text_style}>{Content}</Typography>
+            <Typography className={TabStyle.text_style} color={"black"}>
+              {Content}
+            </Typography>
           )}
         </>
       }

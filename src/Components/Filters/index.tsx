@@ -46,16 +46,6 @@ export default function Filters() {
           label="Roles"
           CategoryOption={JobTypes}
         />
-        {/* <SingleSelect
-          label="Number of Employees"
-          sx={{
-            minWidth: "200px",
-          }}
-          options={Employee_Variants.map((item) => ({
-            value: item.toLowerCase(),
-            label: item,
-          }))}
-        /> */}
         <SingleSelect
           sx={{
             minWidth: "150px",

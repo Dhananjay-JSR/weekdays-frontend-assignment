@@ -16,12 +16,15 @@ export default function useFilterData() {
       }
     })
     .filter((JobData) => {
-      if (FilterData.MinBaseSalary && JobData.minJdSalary != null) {
-        console.log(FilterData.MinBaseSalary.split("L")[0]);
-        return (
-          JobData.minJdSalary >=
-          parseInt(FilterData.MinBaseSalary.split("L")[0])
-        );
+      if (FilterData.MinBaseSalary != "") {
+        if (JobData.minJdSalary == null) {
+          return false;
+        } else {
+          return (
+            JobData.minJdSalary >=
+            parseInt(FilterData.MinBaseSalary.split("L")[0])
+          );
+        }
       } else {
         return true;
       }

@@ -1,22 +1,22 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface FilterState {
-  MinExperience: string; // Done
-  CompanyName: string | null; //Done
+  MinExperience: string;
+  CompanyName: string;
   Location: string;
   Remote: string;
-  //   TechStack: string[];
-  Role: string[]; //DONE
-  MinBaseSalary: string | undefined; //DONE
+  //   TechStack: string[]; // The Api Doesn't Send TechStack Details
+  Role: string[];
+  MinBaseSalary: string;
 }
 
 const initialState: FilterState = {
   MinExperience: "",
-  CompanyName: null,
+  CompanyName: "",
   Location: "",
   Remote: "",
   Role: [],
-  MinBaseSalary: undefined,
+  MinBaseSalary: "",
 };
 
 export const filterSlice = createSlice({

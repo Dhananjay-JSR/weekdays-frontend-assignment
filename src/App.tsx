@@ -9,29 +9,38 @@ import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAPIData } from "./store/DataSlice";
 import { AppDispatch, RootState } from "./store/store";
+import debounce from "lodash.debounce";
 function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, currentPage, currentState, error } = useSelector(
+  const { data, currentState, error } = useSelector(
     (state: RootState) => state.apiData
   );
+  let timeout: NodeJS.Timeout;
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback(async () => {
     if (ref.current) {
       const { scrollTop, scrollHeight, clientHeight } = ref.current;
-      if (scrollTop + clientHeight >= scrollHeight - 1) {
+      if (scrollTop + clientHeight > scrollHeight - 1) {
+        console.log("fetching data");
         dispatch(fetchAPIData());
       }
     }
   }, []);
+
+  const debouncedHandleScroll = useCallback(() => {
+    clearTimeout(timeout);
+    timeout = setTimeout(handleScroll, 500);
+  }, [handleScroll]);
+
   useEffect(() => {
     dispatch(fetchAPIData());
   }, []);
   useEffect(() => {
     const element = ref.current;
     if (element) {
-      element.addEventListener("scroll", handleScroll);
+      element.addEventListener("scroll", debouncedHandleScroll);
       return () => {
-        element.removeEventListener("scroll", handleScroll);
+        element.removeEventListener("scroll", debouncedHandleScroll);
       };
     }
   }, [handleScroll]);
@@ -62,7 +71,12 @@ function App() {
               <Typography fontWeight={"medium"}>👋 Dhananjay</Typography>
             </nav>
           </header>
-          <main className={MainStyle.body_holder}>
+          <main
+            style={{
+              marginBottom: "50px",
+            }}
+            className={MainStyle.body_holder}
+          >
             <TabsMod />
             <Filters />
             {currentState == "LOADING" && <Typography>Loading...</Typography>}
@@ -109,11 +123,17 @@ function App() {
               })}
             </Grid2>
             {currentState == "LOADING" && (
-              <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  mt: 2,
+                }}
+              >
+                <Typography>Loading more...</Typography>
                 <CircularProgress />
               </Box>
             )}
-
             {/*  */}
           </main>
         </section>

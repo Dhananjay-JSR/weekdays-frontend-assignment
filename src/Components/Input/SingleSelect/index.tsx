@@ -36,6 +36,7 @@ export default function SingleSelect({
             id={label + "for-html"}
             label={label}
           >
+            <MenuItem value={""}>None</MenuItem>
             {options?.map((option) => (
               <MenuItem value={option.value}>{option.label}</MenuItem>
             ))}

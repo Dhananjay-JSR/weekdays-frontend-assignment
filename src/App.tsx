@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAPIData } from "./store/DataSlice";
 import { AppDispatch, RootState } from "./store/store";
 import debounce from "lodash.debounce";
+import useFilterData from "./store/useData";
+import { Alarm } from "@mui/icons-material";
 function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const FilterData = useSelector((state: RootState) => state.filterData);
-  const { data, currentState, error } = useSelector(
-    (state: RootState) => state.apiData
-  );
+  const { FilterData, currentState, error } = useFilterData();
+
   let timeout: NodeJS.Timeout;
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
   const handleScroll = useCallback(async () => {
@@ -91,110 +91,43 @@ function App() {
               container
               spacing={2}
             >
-              {data
-                ?.filter((JobData) => {
-                  if (FilterData.Role.length > 0 && JobData.jobRole) {
-                    return FilterData.Role.includes(JobData.jobRole);
-                  } else {
-                    return true;
-                  }
-                })
-                .filter((JobData) => {
-                  if (FilterData.MinBaseSalary && JobData.minJdSalary != null) {
-                    console.log(FilterData.MinBaseSalary.split("L")[0]);
+              {FilterData.length == 0
+                ? currentState == "SUCCESS" && (
+                    <Alert severity="warning">
+                      No Data Found with Selected Filter
+                    </Alert>
+                  )
+                : FilterData.map((items) => {
                     return (
-                      JobData.minJdSalary >=
-                      parseInt(FilterData.MinBaseSalary.split("L")[0])
+                      <>
+                        <JOB_Cards>
+                          {(isExpanded, setExpanded) => (
+                            <>
+                              <JOB_Cards.Header
+                                salaryCurrencyCode={items.salaryCurrencyCode}
+                                minJdSalary={items.minJdSalary}
+                                maxJdSalary={items.maxJdSalary}
+                                location={items.location}
+                                logoUrl={items.logoUrl}
+                                jobRole={items.jobRole}
+                                companyName={items.companyName}
+                              />
+                              <JOB_Cards.Body
+                                isExpanded={isExpanded}
+                                setIsExpanded={setExpanded}
+                                jobDescription={items.jobDetailsFromCompany}
+                              />
+                              <JOB_Cards.Footer
+                                jdLink={items.jdLink}
+                                maxExp={items.maxExp}
+                                minExp={items.minExp}
+                              />
+                            </>
+                          )}
+                        </JOB_Cards>
+                      </>
                     );
-                  } else {
-                    return true;
-                  }
-                })
-                .filter((JobData) => {
-                  if (FilterData.CompanyName && JobData.companyName) {
-                    return JobData.companyName
-                      .toLowerCase()
-                      .includes(FilterData.CompanyName.toLowerCase());
-                  } else {
-                    return true;
-                  }
-                })
-                .filter((JobData) => {
-                  if (FilterData.MinExperience != "") {
-                    if (JobData.minExp != null) {
-                      return (
-                        JobData.minExp >= parseInt(FilterData.MinExperience)
-                      );
-                    } else {
-                      return false;
-                    }
-                  } else {
-                    return true;
-                  }
-                })
-                .filter((JobData) => {
-                  if (FilterData.Remote != "") {
-                    if (JobData.location) {
-                      if (FilterData.Remote == "Remote".toLowerCase()) {
-                        return JobData.location
-                          .toLowerCase()
-                          .includes("remote");
-                      } else {
-                        return !JobData.location
-                          .toLowerCase()
-                          .includes("remote");
-                      }
-                    } else {
-                      return false;
-                    }
-                  } else {
-                    return true;
-                  }
-                })
-                .filter((JobData) => {
-                  if (FilterData.Location != "") {
-                    if (JobData.location) {
-                      return JobData.location
-                        .toLowerCase()
-                        .includes(FilterData.Location.toLowerCase());
-                    } else {
-                      return false;
-                    }
-                  } else {
-                    return true;
-                  }
-                })
-                .map((items) => {
-                  return (
-                    <>
-                      <JOB_Cards>
-                        {(isExpanded, setExpanded) => (
-                          <>
-                            <JOB_Cards.Header
-                              salaryCurrencyCode={items.salaryCurrencyCode}
-                              minJdSalary={items.minJdSalary}
-                              maxJdSalary={items.maxJdSalary}
-                              location={items.location}
-                              logoUrl={items.logoUrl}
-                              jobRole={items.jobRole}
-                              companyName={items.companyName}
-                            />
-                            <JOB_Cards.Body
-                              isExpanded={isExpanded}
-                              setIsExpanded={setExpanded}
-                              jobDescription={items.jobDetailsFromCompany}
-                            />
-                            <JOB_Cards.Footer
-                              jdLink={items.jdLink}
-                              maxExp={items.maxExp}
-                              minExp={items.minExp}
-                            />
-                          </>
-                        )}
-                      </JOB_Cards>
-                    </>
-                  );
-                })}
+                  })}
             </Grid2>
             {currentState == "LOADING" && (
               <Box
@@ -208,6 +141,7 @@ function App() {
                 <CircularProgress />
               </Box>
             )}
+
             {/*  */}
           </main>
         </section>

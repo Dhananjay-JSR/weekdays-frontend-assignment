@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# Weekday Frontend Assignment
+1) Responsive Design
+2) Use of CSS Module for Styling 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deployed URL :- https://weekdays-frontend-assignment.vercel.app/
 
-Currently, two official plugins are available:
+## Techstack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+React <br/>
+Material UI <br/>
+Axios <br/>
+Redux <br/>
+Redux Thunk <br/>
 
-## Expanding the ESLint configuration
+## How to run the project
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+*) npm install <br/>
+*) npm run dev <br/>
+ 
+Web View
+![image](https://github.com/Dhananjay-JSR/weekdays-frontend-assignment/assets/47073516/765316ee-b8e0-4d34-bd4f-433968235d2f)
 
-- Configure the top-level `parserOptions` property like this:
+Mobile View
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+![image](https://github.com/Dhananjay-JSR/weekdays-frontend-assignment/assets/47073516/df59bbe2-b4db-47fa-8d98-f13bc20597cf)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

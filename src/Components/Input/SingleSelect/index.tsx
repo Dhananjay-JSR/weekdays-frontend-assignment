@@ -16,7 +16,7 @@ export default function SingleSelect({
   onChange,
   sx,
 }: {
-  value?: string;
+  value?: string | undefined;
   onChange?: (event: SelectChangeEvent<string>) => void;
   label: string;
   options?: {

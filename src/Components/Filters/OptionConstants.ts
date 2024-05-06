@@ -5,47 +5,61 @@ export const JobTypes = [
       "Frontend",
       "Backend",
       "Fullstack",
-      "IOS",
-      "Flutter",
-      "React Native",
-      "Android",
-      "Tech Lead",
-      "Dev-Ops",
-      "Data Engineer",
-      "Data Science",
-      "Computer-Vision",
-      "NLP",
+      // "IOS",
+      // "Flutter",
+      // "React Native",
+      // "Android",
+      // "Tech Lead",
+      // "Dev-Ops",
+      // "Data Engineer",
+      // "Data Science",
+      // "Computer-Vision",
+      // "NLP",
     ].map((item) => ({
       label: item,
       value: item.toLowerCase(),
     })),
   },
   {
-    name: "DESIGN",
-    children: [
-      "Designer",
-      "Design Manager",
-      "Graphics Magnager",
-      "Product Designer",
-    ].map((item) => ({
-      label: item,
-      value: item.toLowerCase(),
-    })),
-  },
-  {
-    name: "PRODUCT",
-    children: ["PRODUCT Manager"].map((items) => ({
+    name: "Mobile Development",
+    children: ["IOS", "Android"].map((items) => ({
       label: items,
       value: items.toLowerCase(),
     })),
   },
   {
-    name: "OPERATIONS",
-    children: ["Operation Managers", "Founder's Office"].map((items) => ({
+    name: "Operations",
+    children: ["Tech Lead"].map((items) => ({
       label: items,
       value: items.toLowerCase(),
     })),
   },
+  // {
+  //   name: "DESIGN",
+  //   children: [
+  //     "Designer",
+  //     "Design Manager",
+  //     "Graphics Magnager",
+  //     "Product Designer",
+  //   ].map((item) => ({
+  //     label: item,
+  //     value: item.toLowerCase(),
+  //   })),
+  // },
+  // {
+  //   name: "PRODUCT",
+  //   children: ["PRODUCT Manager"].map((items) => ({
+  //     label: items,
+  //     value: items.toLowerCase(),
+  //   })),
+  // },
+  // {
+  //   name: "OPERATIONS",
+  //   children: ["Operation Managers", "Founder's Office"].map((items) => ({
+  //     label: items,
+  //     value: items.toLowerCase(),
+  //   })),
+  // },
 ];
 
 export const Employee_Variants = [
@@ -71,7 +85,7 @@ export const Experience_Variants = [
   "10",
 ];
 
-export const Remote_Variants = ["Remote", "Hybrid", "In-Office"];
+export const Remote_Variants = ["Remote", "In-Office"];
 
 export const Salary_Variants = [
   {

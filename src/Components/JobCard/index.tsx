@@ -185,7 +185,9 @@ function HeaderRenderer({
   return (
     <>
       <Box className={JobCardStyles.Head_Wrapper}>
-        <Typography fontSize={"9px"}>⏳ Posted 5 days ago</Typography>
+        <Typography fontWeight={500} fontSize={"9px"}>
+          ⏳ Posted 5 days ago
+        </Typography>
       </Box>
       <Box className={JobCardStyles.Head_wrap}>
         {logoUrl != null && (

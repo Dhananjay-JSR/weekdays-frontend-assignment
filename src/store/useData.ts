@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
-
+/**
+ *
+ * @description Centralized Store Data to keep track of filter Data
+ */
 export default function useFilterData() {
   const FilterData = useSelector((state: RootState) => state.filterData);
   const { data, currentState, error } = useSelector(

@@ -3,7 +3,9 @@ import axios from "axios";
 import { RootState } from "./store";
 
 const API_URL = "https://api.weekday.technology/adhoc/getSampleJdJSON";
-
+/**
+ @description Thunk middle responsible for Fetch Data with tracker to Current Page
+ */
 export const fetchAPIData = createAsyncThunk(
   "apiData/fetchAPIData",
   async (_, { getState, rejectWithValue }) => {
@@ -24,6 +26,9 @@ export const fetchAPIData = createAsyncThunk(
   }
 );
 
+/**
+ * @description Interface for API Structure
+ */
 export interface ApiState {
   currentPage: number;
   data: {
@@ -57,9 +62,11 @@ export const ApiDataSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchAPIData.pending, (state) => {
+      // reducer to called when Data is Loading
       state.currentState = "LOADING";
     });
     builder.addCase(fetchAPIData.fulfilled, (state, action) => {
+      // reducer to call when Data is finished
       state.currentState = "SUCCESS";
       state.currentPage += 1;
       state.data = state.data.concat(
@@ -72,7 +79,5 @@ export const ApiDataSlice = createSlice({
     });
   },
 });
-
-// Action creators are generated for each case reducer function
 
 export default ApiDataSlice.reducer;

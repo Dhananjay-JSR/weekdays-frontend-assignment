@@ -1,3 +1,7 @@
+/**
+ * Store Constant for all Filter Parameter
+ */
+
 export const JobTypes = [
   {
     name: "ENGINEERING",

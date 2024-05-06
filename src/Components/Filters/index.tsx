@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import MultiSelect from "../Input/MultiSelect";
 import SingleSelect from "../Input/SingleSelect";
 import {
@@ -23,8 +23,8 @@ export default function Filters() {
   const dispatch = useDispatch();
   return (
     <>
-      <div
-        style={{
+      <Box
+        sx={{
           justifyContent: "center",
           display: "flex",
           padding: "10px",
@@ -102,7 +102,7 @@ export default function Filters() {
           label="Search Company Name"
           variant="outlined"
         />
-      </div>
+      </Box>
     </>
   );
 }
